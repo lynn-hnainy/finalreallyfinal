@@ -1,0 +1,45 @@
+{% if user.is_superuser %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/x-icon" href="../static/assets/logo.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Borrowed books</title>
+  </head>
+<body>
+    {% include 'navbarAdmin.html' %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger m-5 text-center" role="alert">
+            {{message}}
+          </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row m-5">
+        {% for book in borrowed %}
+            <div class="card col-3 m-2" style="max-width: 50%;">
+            <div class="card-body">
+                <h5 class="card-title">
+                 {{book.book.book_title}}
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    {{book.book.author_name}}
+                </h6>
+
+            </div>
+            {% if book.fines > 0 %}
+            <div class="alert alert-danger" role="alert">Fines:{{book.fines}}L.L</div>
+            {% endif %}
+            <a href="{% url 'return_book' book.book.id book.user.id %}" class="btn btn-primary m-2">Returned</a>
+    </div>
+        {% endfor %}
+    </div>
+</body>
+{% else %}
+<h1>Access Denied</h1>
+{% endif %}

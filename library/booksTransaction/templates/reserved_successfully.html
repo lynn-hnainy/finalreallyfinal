@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="icon" type="image/x-icon" href="{% static 'assets/logo.png' %}">
+    <title>Reserved Successfullu</title>
+{% endblock %}
+{% block content %}
+<div width="100%">
+    <p style="float: left;">
+        <a href="{% url 'home' %}"> Go back home</a>  
+    </p>
+    <p style="float:right;">
+        <a href="{% url 'reserved_books' user.id %}"> See reserved books</a>
+    </p>
+</div>
+{% endblock %}

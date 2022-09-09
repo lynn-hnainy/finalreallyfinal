@@ -1,0 +1,35 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+    <!-- Container wrapper -->
+    <div class="container justify-content-between">
+      <!-- Navbar brand -->
+      <a class="navbar-brand me-2" href="{% url 'admin_welcome' %}">
+        <img src="{% static 'logo.png'%}" width="80px" height="80px">
+      </a>
+  
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarButtonsExample"
+        aria-controls="navbarButtonsExample"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarButtonsExample">
+  
+        <div class="d-flex">
+          <a href="http://127.0.0.1:8000/admin/" class="btn btn-info btn-sm  mx-5" role="button" aria-pressed="true">Go to admin panel</a>
+          <a href="{% url 'logout_member' %}" class="btn btn-danger btn-sm " role="button" aria-pressed="true">Logout</a>
+        </div>
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+    <!-- Navbar -->

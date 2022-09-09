@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+  <link rel="icon" type="image/x-icon" href="{% static 'assets/logo.png' %}">
+    <title>Reserved</title>
+{% endblock %}
+{% block content %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Book</th>
+        <th scope="col">Reserved on</th>
+        <th scope="col">Available starting</th>
+        <th scope="col">Cancel Reservation</th>
+        <th scope="col">Ready</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+            <tr>
+                <th scope="row">{{book.book.book_title}}</th>
+                <td>{{book.reservation_date}}</td>
+                <td>{{book.availibility_date}}</td>
+                <td>
+                  <a href="{% url 'cancel_reservation' book.book.id book.user.id %}">Cancel</a>
+                </td>
+                <td>
+                  {% if book.is_ready %}
+                    <a href="{% url 'borrow_book' book.book.id book.user.id %}"> Borrow </a>
+                  {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
